@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".AddNoteActivity">
+
+    <EditText
+        android:id="@+id/titleET"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        android:hint="Title" />
+
+    <EditText
+        android:id="@+id/noteET"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="50dp"
+        android:hint="Enter note here" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Please choose the urgency of this note from a scale of 1 to 5: "/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/oneBtn"
+            android:text="1"
+            android:backgroundTint="#03FF0B"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/twoBtn"
+            android:text="2"
+            android:backgroundTint="#03FFFB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/threeBtn"
+            android:text="3"
+            android:backgroundTint="#0379FF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/fourBtn"
+            android:text="4"
+            android:backgroundTint="#2503FF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/fiveBtn"
+            android:text="5"
+            android:backgroundTint="#FF1744"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/starIV"
+        android:layout_width="303dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/material_dynamic_neutral_variant10"
+        android:text="Save Note" />
+
+</LinearLayout>
