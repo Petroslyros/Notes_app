@@ -1,8 +1,6 @@
 package com.example.notesproject.adapter
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -15,16 +13,13 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import com.example.notesproject.database.Note
+import com.example.notesproject.models.Note
 import com.example.notesproject.R
 import com.example.notesproject.database.NotesDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class NotesAdapter(private val context: Context, private val notes: ArrayList<Note>) :
     BaseAdapter() {
@@ -49,7 +44,7 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
         val editBtn = view.findViewById<Button>(R.id.editBtn)
         val dateTV = view.findViewById<TextView>(R.id.dateTV)
         val starIV = view.findViewById<ImageView>(R.id.starIV)
-        val currentDate = getCurrentDate()
+
 
         titleTV.text = notes[position].title
         textView.text = notes[position].text
@@ -60,7 +55,7 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
             4 -> starIV.setImageResource(R.drawable.fourstar)
             5 -> starIV.setImageResource(R.drawable.fivestar)
         }
-        dateTV.text = currentDate
+        dateTV.text = notes[position].date
 
         deleteBtn.setOnClickListener {
             deleteItem(position)
@@ -148,12 +143,15 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
         titleET.setText(currentNote.title)
         noteET.setText(currentNote.text)
 
+
+
         submitBtn.setOnClickListener {
             val updatedNote = currentNote.copy(
                 title = titleET.text.toString(),
                 text = noteET.text.toString(),
                 importance = importance
             )
+
             CoroutineScope(Dispatchers.IO).launch {
                 val db = NotesDatabase.getDatabase(context)
                 db.getNoteDao().updateNote(updatedNote)
@@ -167,11 +165,6 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
 
         }
 
-    }
-
-    private fun getCurrentDate(): String {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        return dateFormat.format(Date())
     }
 
 

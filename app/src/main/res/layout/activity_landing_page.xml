@@ -51,6 +51,10 @@
         android:layout_margin="100dp"
         android:backgroundTint="@color/material_dynamic_neutral_variant10"
         android:text="Sign up"/>
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

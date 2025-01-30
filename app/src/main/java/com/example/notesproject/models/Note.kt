@@ -1,6 +1,5 @@
-package com.example.notesproject.database
+package com.example.notesproject.models
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -14,5 +13,6 @@ data class Note(
     val title: String,
     val text: String,
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    val importance: Int
+    var importance: Int,
+    val date : String
     )

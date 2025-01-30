@@ -1,6 +1,5 @@
 package com.example.notesproject
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -17,12 +16,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.example.notesproject.adapter.NotesAdapter
-import com.example.notesproject.database.Note
+import com.example.notesproject.models.Note
 import com.example.notesproject.viewmodels.NotesViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var model: NotesViewModel
     private lateinit var notesAdapter: NotesAdapter
     private var noteList = ArrayList<Note>()
+    private var importance : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +79,7 @@ class MainActivity : AppCompatActivity() {
 
             noteList.clear()
             noteList.addAll(notes)
+            bbSort()
             notesAdapter.notifyDataSetChanged()
             notesLV.adapter = notesAdapter
         }
@@ -99,7 +103,9 @@ class MainActivity : AppCompatActivity() {
         val threeBtn = popupView.findViewById<Button>(R.id.threeBtn)
         val fourBtn = popupView.findViewById<Button>(R.id.fourBtn)
         val fiveBtn = popupView.findViewById<Button>(R.id.fiveBtn)
-        var importance = 0
+        importance = 0
+        val currentDate = getCurrentDate()
+
 
         oneBtn.setOnClickListener {
             starIV.setImageResource(R.drawable.onestar)
@@ -127,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             val note = noteEt.text.toString()
 
             try {
-                model.addNote(this, title, note, importance) {
+                model.addNote(this, title, note, importance, currentDate) {
                     fetchAndPopulateList()
                     popupWindow.dismiss()
                 }
@@ -145,5 +151,25 @@ class MainActivity : AppCompatActivity() {
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0)
 
 
+
+    }
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        return dateFormat.format(Date())
+    }
+    private fun bbSort() {
+        var N = noteList.size-1
+        var temp : Note
+
+        for(i in 0..N){
+            for(j in N downTo i+1){
+                if(noteList[j-1].importance < noteList[j].importance){
+                    temp = noteList[j-1]
+                    noteList[j-1] = noteList[j]
+                    noteList[j] = temp
+
+                }
+            }
+        }
     }
 }

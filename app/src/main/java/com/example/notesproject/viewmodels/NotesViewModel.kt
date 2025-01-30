@@ -1,7 +1,7 @@
 package com.example.notesproject.viewmodels
 
 import android.content.Context
-import com.example.notesproject.database.Note
+import com.example.notesproject.models.Note
 import com.example.notesproject.database.NotesDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,13 +29,13 @@ class NotesViewModel(var context: Context) {
     }
 
 
-    fun addNote(context: Context,title: String, note: String, importance: Int, callback: () -> Unit) {
+    fun addNote(context: Context,title: String, note: String, importance: Int, date: String ,callback: () -> Unit) {
         if (note.isBlank() || title.isBlank()) {
             throw IllegalArgumentException("Note cannot be blank")
         }
 
 
-        val newNote = Note(title = title, text = note,importance = importance ) //URGENCY OF NOTE AS WELL
+        val newNote = Note(title = title, text = note,importance = importance, date = date ) //URGENCY OF NOTE AS WELL
         CoroutineScope(Dispatchers.IO).launch {
 
             val db = NotesDatabase.getDatabase(context)

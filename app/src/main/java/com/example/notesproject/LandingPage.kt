@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class LandingPage : AppCompatActivity() {
-    @SuppressLint("SuspiciousIndentation")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,12 +21,19 @@ class LandingPage : AppCompatActivity() {
             insets
         }
 
-    val loginBtn = findViewById<Button>(R.id.loginBtn)
+        val loginBtn = findViewById<Button>(R.id.loginBtn)
 
         loginBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        val signUpBtn = findViewById<Button>(R.id.signUpBtn)
+
+        signUpBtn.setOnClickListener { val fragment = MyFragment()
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,fragment).commit()
+        }
+
 
 
     }

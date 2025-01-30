@@ -4,12 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.notesproject.DAO.NotesDAO
 
-@Database(entities = [Note::class], version = 3)
+import com.example.notesproject.models.Note
+
+
+@Database(entities = [Note::class], version = 5)
 abstract class NotesDatabase : RoomDatabase() {
 
     //access dao through database
     abstract fun getNoteDao(): NotesDAO
+//    abstract fun getUserDao(): UserDAO
 
     //single instance of room database so it prevents multiple opening of database at same time
 
