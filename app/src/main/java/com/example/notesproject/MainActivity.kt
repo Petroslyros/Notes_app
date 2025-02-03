@@ -1,6 +1,7 @@
 package com.example.notesproject
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,12 +28,11 @@ import java.util.Date
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var notesLV: ListView
     private lateinit var model: NotesViewModel
     private lateinit var notesAdapter: NotesAdapter
     private var noteList = ArrayList<Note>()
-    private var importance : Int = 0
+    private var importance: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,21 +151,22 @@ class MainActivity : AppCompatActivity() {
         popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0)
 
 
-
     }
+
     private fun getCurrentDate(): String {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         return dateFormat.format(Date())
     }
-    private fun bbSort() {
-        var N = noteList.size-1
-        var temp : Note
 
-        for(i in 0..N){
-            for(j in N downTo i+1){
-                if(noteList[j-1].importance < noteList[j].importance){
-                    temp = noteList[j-1]
-                    noteList[j-1] = noteList[j]
+    private fun bbSort() {
+        var N = noteList.size - 1
+        var temp: Note
+
+        for (i in 0..N) {
+            for (j in N downTo i + 1) {
+                if (noteList[j - 1].importance < noteList[j].importance) {
+                    temp = noteList[j - 1]
+                    noteList[j - 1] = noteList[j]
                     noteList[j] = temp
 
                 }
