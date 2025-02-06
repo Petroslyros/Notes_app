@@ -28,13 +28,6 @@ class LandingPage : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val signUpBtn = findViewById<Button>(R.id.signUpBtn)
-
-        signUpBtn.setOnClickListener { val fragment = MyFragment()
-            supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,fragment).commit()
-        }
-
-
 
     }
 }
