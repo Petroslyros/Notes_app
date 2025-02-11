@@ -35,7 +35,7 @@ class NotesViewModel(var context: Context) {
         }
 
 
-        val newNote = Note(title = title, text = note,importance = importance, date = date ) //URGENCY OF NOTE AS WELL
+        val newNote = Note(title = title, text = note,importance = importance, date = date )
         CoroutineScope(Dispatchers.IO).launch {
 
             val db = NotesDatabase.getDatabase(context)
