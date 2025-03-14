@@ -36,10 +36,9 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view =
-            convertView ?: LayoutInflater.from(context).inflate(R.layout.item_note, parent, false)
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_note, parent, false)
         val titleTV = view.findViewById<TextView>(R.id.titleTV)
-        val textView = view.findViewById<TextView>(R.id.textTV)
+        val textTV = view.findViewById<TextView>(R.id.textTV)
         val deleteBtn = view.findViewById<Button>(R.id.deleteBtn)
         val editBtn = view.findViewById<Button>(R.id.editBtn)
         val dateTV = view.findViewById<TextView>(R.id.dateTV)
@@ -47,8 +46,8 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
 
 
         titleTV.text = notes[position].title
-        textView.text = notes[position].text
-        when(notes[position].importance){
+        textTV.text = notes[position].text
+        when (notes[position].importance) {
             1 -> starIV.setImageResource(R.drawable.onestar)
             2 -> starIV.setImageResource(R.drawable.twostar)
             3 -> starIV.setImageResource(R.drawable.threestar)
@@ -58,7 +57,6 @@ class NotesAdapter(private val context: Context, private val notes: ArrayList<No
         dateTV.text = notes[position].date
 
         deleteBtn.setOnClickListener {
-            deleteItem(position)
         }
 
         editBtn.setOnClickListener {

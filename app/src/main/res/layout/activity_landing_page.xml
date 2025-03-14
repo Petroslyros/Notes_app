@@ -10,7 +10,7 @@
     tools:context=".LandingPage">
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -24,7 +24,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#00ACC1"
-        android:text="Enter Notes"
+        android:text="View Notes"
         android:layout_gravity="center"/>
     
 
